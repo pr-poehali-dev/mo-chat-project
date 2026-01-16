@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -12,6 +13,7 @@ import { mockChats, mockMessages, mockContacts, currentUser, mockUsers } from '@
 import { Message, User } from '@/types/chat';
 
 export default function Index() {
+  const navigate = useNavigate();
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('chats');
@@ -61,9 +63,19 @@ export default function Index() {
               <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 МО
               </h1>
-              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
-                <Icon name="Plus" size={20} />
-              </Button>
+              <div className="flex gap-2">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="hover:bg-primary/10"
+                  onClick={() => navigate('/auth')}
+                >
+                  <Icon name="LogIn" size={20} />
+                </Button>
+                <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+                  <Icon name="Plus" size={20} />
+                </Button>
+              </div>
             </div>
 
             <div className="relative">
